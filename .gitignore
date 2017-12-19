@@ -1,0 +1,9 @@
+.project
+.classpath
+.buildpath
+.settings/
+*.pyc
+*.swm
+*.swo
+*.swp
+.idea/

@@ -1,0 +1,4 @@
+PyMySQL==0.7.11
+configparser==3.5.0
+requests==2.18.4
+termcolor==1.1.0
