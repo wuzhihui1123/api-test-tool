@@ -86,17 +86,19 @@ def find_one():
     pass
 
 
-def clear(table):
+def clear(*tables):
     """
-    清除所有表数据
-    :param table: 表名
+    清除表所有数据
+    :param tables: 表名，可以多个
     :return:
     """
-    connection = __get_connection()
-    with connection.cursor() as cursor:
-        sql = "delete from {0}".format(table)
-        cursor.execute(sql)
-    connection.commit()
+    if len(tables) > 0:
+        for table in tables:
+            connection = __get_connection()
+            with connection.cursor() as cursor:
+                sql = "delete from {0}".format(table)
+                cursor.execute(sql)
+            connection.commit()
 
 
 if __name__ == '__main__':
