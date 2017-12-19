@@ -4,7 +4,7 @@ import configparser
 import requests
 
 config = configparser.ConfigParser()
-print config.read('../conf/config.ini')
+config.read('../conf/config.ini')
 server_host = config['DEFAULT']['SERVER_URL']
 default_headers = {"Content-Type": "application/json"}
 

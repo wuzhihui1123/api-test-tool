@@ -27,11 +27,11 @@ class TestCase(object):
         try:
             result = self.fn()
             TestCase.case_success_list.append(case_path)
-            print colored("======> √ Assert ok , case_path: [ {0} ]".format(case_path), "blue")
+            print colored("======> √ Test Ok , case_path: [ {0} ]".format(case_path), "blue")
             return result
         except AssertionError as e:
             # traceback.print_exc()
-            print colored("======> × Assert Fail, case_path: {0}, Info: [ {1} ]".format(case_path, e.message), "red")
+            print colored("======> × Test Fail, case_path: {0}, Info: [ {1} ]".format(case_path, e.message), "red")
             TestCase.case_fail_list.append(case_path)
 
     @classmethod
