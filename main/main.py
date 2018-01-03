@@ -2,8 +2,10 @@
 # -*- coding:utf-8 -*-
 
 import os
+import sys
 
-from util.case_util import TestCase
+project_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+sys.path.append(project_path)
 
 
 def get_case_files():
@@ -18,15 +20,18 @@ def get_case_files():
     return file_list
 
 
-case_files = get_case_files()
-for case_f in case_files:
-    # 加载测试用例模块
-    case_module = __import__("case.{0}".format(os.path.splitext(case_f)[0]), fromlist=["*"])
-    # 遍历用例模块下的所有函数
-    for name, fn in case_module.__dict__.iteritems():
-        # 如果函数使用了 @TestCase 注解， 则执行函数调用
-        if isinstance(fn, TestCase):
-            fn()
+if __name__ == '__main__':
+    from util.case_util import TestCase
 
-# 打印测试统计结果
-TestCase.print_statistic_result()
+    case_files = get_case_files()
+    for case_f in case_files:
+        # 加载测试用例模块
+        case_module = __import__("case.{0}".format(os.path.splitext(case_f)[0]), fromlist=["*"])
+        # 遍历用例模块下的所有函数
+        for name, fn in case_module.__dict__.iteritems():
+            # 如果函数使用了 @TestCase 注解， 则执行函数调用
+            if isinstance(fn, TestCase):
+                fn()
+
+    # 打印测试统计结果
+    TestCase.print_statistic_result()
